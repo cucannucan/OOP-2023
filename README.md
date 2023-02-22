@@ -42,6 +42,98 @@ Resources
 - https://github.com/skooter500/OOP_Labtest1_2017_Starter
 - https://github.com/skooter500/OOP-LabTest1-2016
 
+# Week 5 - Digital Audio 1
+- [Recording of the class](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/Ef00smEvputFlEtGJYTqleEBUMA-SFRxoxWUkPEnN34mPA?e=VfutXz)
+
+## Lab 
+
+### Lab
+### Learning Outcomes
+- Practice for loops
+- Demonstrate an understanding of how digital audio works
+- Practice computational thinking and problem solving
+- Have fun making beautiful things 
+
+Update your forks and have a look at Audio1.java this is the code we wrote on Monday with some modifications. Checkout the ```keyPressed``` function. This starts and restarts the audio file when you press space. Also it sets the value of the ```mode``` variable to be the numbers 0-5 when you press the appropriate key on the keyboard. If your computer wont play the audio file for some reason,you can uncomment the code to read audio from the microphone instead or use a .wav file instead.
+
+You should make an array the same size as the buffer and lerp the samples to each element in the buffer (similar to how we did the average). This will make all your visualisations smoother
+
+Ok now check out this video of 5 visuals you can make today. Pressing the keys 0-4 on the keyboard should change the visual in your sketch.
+
+[![YouTube](http://img.youtube.com/vi/xF7VrXZqLko/0.jpg)](https://www.youtube.com/watch?v=xF7VrXZqLko)
+
+- 0 - The wavy lines visual - To make this, flip the order of the x2, y2 parameters on the line
+- 1 - The waveform
+- 2 - The waveform drawn down the 4 sides of the screen
+- 3 - The circle - Use the lerped amplitude to control the size of the circle
+- 4 - The square - Again use the lerped amplitude to control the size of the square. You can also use rectMode(CENTER) to make the x and y parameters of the rect function determine the center of the rect rather than the coordinates of the top left corner
+- 5 - There is no visual associated with 5 in the video, so come up with your own!
+
+
+# Week 4
+- [Recoding of the class](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/ESgtwCRYdVpEu2R8RmRUJMQBZA1XDVfpVZrfLEhVDeOaBg?e=23d7az) 
+- I have decided to *keep* the word guys as a gender inclusive term as there is currently no good alternative
+
+- [Recording of the tutorial](https://tudublin-my.sharepoint.com/:v:/g/personal/bryan_duggan_tudublin_ie/EZ2psbF11CBBuUnuCHCWbjsB8JFIrTLht2xtaH596LGwdA?e=Co3nBE)
+
+## Lab 
+- Update the master branches of your repos to the code we worked on in Monday's class
+	```
+	git checkout master
+	git pull upstream master
+	```
+
+- Create a branch for your work today
+	```
+	git checkout -b lab4
+	```
+- Do some work on [the lab test from 2016](https://github.com/skooter500/OOP-LabTest1-2016/blob/master/readme.md). We started this in Monday's class, so you have some starter code.
+	- Create the Star class
+	- Load from the csv file into an ArrayList of Star objects
+	- Plot the stars to the grid
+
+- This is how you can load the file into an ArrayList of Star objects:
+
+	```Java
+	void loadStars()
+		{
+			Table table = loadTable("HabHYG15ly.csv", "header");
+			for(TableRow r:table.rows())
+			{
+				Star s = new Star(r);
+				stars.add(s);
+			}
+		}
+	```
+- You can make Constructors for Star class like this:
+
+	```Java
+	public Star(TableRow tr)
+		{
+			this(
+				tr.getInt("Hab?") == 1, 
+				tr.getString("Display Name"), 
+				tr.getFloat("Distance"),
+				tr.getFloat("Xg"),
+				tr.getFloat("Yg"),
+				tr.getFloat("Zg"),
+				tr.getFloat("AbsMag")
+			);
+		}
+		
+		public Star(boolean hab, String displayName, float distance, float xG, float yG, float zG, float absMag) {
+			this.hab = hab;
+			this.displayName = displayName;
+			this.distance = distance;
+			this.xG = xG;
+			this.yG = yG;
+			this.zG = zG;
+			this.absMag = absMag;
+		}
+	```
+- Commit and push your changes to the repo
+- Submit the URL to your repo via [this form](https://forms.office.com/Pages/ResponsePage.aspx?id=yxdjdkjpX06M7Nq8ji_V2ou3qmFXqEdGlmiD1Myl3gNUNzFGRTJMUzNKVkoxRUZGNUE1VUE2WTZBQy4u)
+
 # Week 3
 - No class because of the bank holiday
 - Lots of amazing things happened in tech!
