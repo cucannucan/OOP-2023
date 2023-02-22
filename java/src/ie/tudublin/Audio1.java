@@ -157,6 +157,26 @@ function draw() {
       for (let i = 0; i < lerpedBuffer.length - 1; i++) {
         let x1 = map(i, 0, lerpedBuffer.length, 0, width);
         let x2 = map(i + 1, 0, lerpedBuffer.length, 0, width
+
+      }
+    }
+}
+let lerpedBuffer = [];
+
+function draw() {
+  // Get the latest sound data
+  let spectrum = fft.analyze();
+  let waveform = fft.waveform();
+
+  // Lerp the waveform values into the lerpedBuffer array
+  for (let i = 0; i < waveform.length; i++) {
+    lerpedBuffer[i] = lerp(lerpedBuffer[i], waveform[i], 0.1);
+  }
+
+  // Use the lerpedBuffer values to draw the visualizations
+  // ...
+}
+
   
 
 }
