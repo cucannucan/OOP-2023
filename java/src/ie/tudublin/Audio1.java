@@ -43,8 +43,8 @@ public class Audio1 extends PApplet
     {
         minim = new Minim(this);
         // Uncomment this to use the microphone
-         ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
-         ab = ai.mix; 
+         //ai = minim.getLineIn(Minim.MONO, width, 44100, 16);
+         //ab = ai.mix; 
 
         // And comment the next two lines out
         ap = minim.loadFile("heroplanet.mp3", 1024);
@@ -61,7 +61,6 @@ public class Audio1 extends PApplet
 
     public void draw()
     {
-
         
         //background(0);
         float halfH = height / 2;
@@ -94,7 +93,17 @@ public class Audio1 extends PApplet
                 }
                 break;
         case 1:
-            background(0);            
+                int i;
+                background(0);
+                for(i=0;i<ab.size();i++)
+                {
+                    float c= map(i, 0,ab.size(), 0, 255);
+                    stroke(c,255,255);
+                    float f= ab.get(i) * halfH;
+                    line(i, halfH+f, halfH-f,i);
+
+                }
+                               
             break;
 
         }
@@ -116,67 +125,4 @@ public class Audio1 extends PApplet
         */
 
     }        
-
-    let mode = 0;
-
-function keyPressed() {
-  if (key == ' ') {
-    if (sound.isPlaying()) {
-      sound.pause();
-    } else {
-      sound.loop();
-    }
-  } else if (key == '0') {
-    mode = 0;
-  } else if (key == '1') {
-    mode = 1;
-  } else if (key == '2') {
-    mode = 2;
-  } else if (key == '3') {
-    mode = 3;
-  } else if (key == '4') {
-    mode = 4;
-  } else if (key == '5') {
-    mode = 5;
-  }
-}
-
-function draw() {
-    // Get the latest sound data
-    let spectrum = fft.analyze();
-    let waveform = fft.waveform();
-  
-    // Lerp the waveform values into the lerpedBuffer array
-    for (let i = 0; i < waveform.length; i++) {
-      lerpedBuffer[i] = lerp(lerpedBuffer[i], waveform[i], 0.1);
-    }
-  
-    // Choose which visualization to draw based on the mode variable
-    if (mode == 0) {
-      // Wavy lines
-      for (let i = 0; i < lerpedBuffer.length - 1; i++) {
-        let x1 = map(i, 0, lerpedBuffer.length, 0, width);
-        let x2 = map(i + 1, 0, lerpedBuffer.length, 0, width
-
-      }
-    }
-}
-let lerpedBuffer = [];
-
-function draw() {
-  // Get the latest sound data
-  let spectrum = fft.analyze();
-  let waveform = fft.waveform();
-
-  // Lerp the waveform values into the lerpedBuffer array
-  for (let i = 0; i < waveform.length; i++) {
-    lerpedBuffer[i] = lerp(lerpedBuffer[i], waveform[i], 0.1);
-  }
-
-  // Use the lerpedBuffer values to draw the visualizations
-  // ...
-}
-
-  
-
 }
