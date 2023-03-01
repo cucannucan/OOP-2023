@@ -27,33 +27,28 @@ public class Main
         processing.core.PApplet.runSketch( a, new StarMap());
     }
 
+
 	public static void audio1()
 	{
 		String[] a = {"MAIN"};
         processing.core.PApplet.runSketch( a, new Audio1());
     }
 
+
 	public static void audio2()
 	{
-		PitchSpeller ps = new PitchSpeller();
-
-        System.out.println(ps.spell(330));  // E,
-        System.out.println(ps.spell(420));  // A,
-        System.out.println(ps.spell(1980)); // b
 		String[] a = {"MAIN"};
         processing.core.PApplet.runSketch( a, new Audio2());
     }
-	
+
 	public static void main(String[] args)
 	{
 		System.out.println("Hello world");
-		
+
 		Dog penny = new Dog();
 		penny.setName("Penny");
 		penny.speak();
 
-		//loops();
 		audio2();
 	}
-	
 }
